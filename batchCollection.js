@@ -57,7 +57,7 @@ exports.insertAll = function () {
 
         db.close();
 
-        //Ouais enfin je suis pas sur de vouloir ça
+        //Uncomment to send update event
         //this.collection.trigger('sync');
     }
 };
@@ -87,7 +87,7 @@ exports.deleteAll = function () {
 
     db.close();
 
-    //Ouais enfin je suis pas sur de vouloir ça
+    //Uncomment to send update event
     //this.collection.trigger('sync');
 };
 exports.updateAll = function () {
@@ -130,7 +130,7 @@ exports.updateAll = function () {
 
         db.close();
 
-        //Ouais enfin je suis pas sur de vouloir ça
+        //Uncomment to send update event
         //this.collection.trigger('sync');
     }
 };
