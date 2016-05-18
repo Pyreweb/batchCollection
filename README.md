@@ -8,6 +8,12 @@ Take parts and inspiration from https://gist.github.com/aaronksaunders/5066608 a
 * Delete part seems too
 * *Update part not tested*
 
+#Usage
+Put the batchCollection.js in /app/lib folder.
+
+Require it like this `var batchCollection = require('batchCollection');`
+
+**Works only on collection with sql adapter.**
 
 #Example
 Before, you could do :
@@ -60,3 +66,42 @@ if (myLotsOfData.length > 0) {
 magicSyncer.insertAll();
 ```
 Which takes over 9000 less time. At least.
+
+#Methods
+##Setters
+`setCollection`: set the collection. Or an object who contains a collection-like structure
+```javascript
+//If you do this, you should have everything already setted before (db and table install)
+myFakeCollection = {
+    config: {
+        columns: {
+            'id': 'int',
+            'name': 'string',
+            ...
+        },
+        adapter: {
+            db_name: '_alloy_',
+            collection_name: 'myFakeTable',
+            idAttribute: 'id'
+        }
+    }
+};
+```
+`setData`: set the datas **array** which we'll do bulk thing to.
+
+`setAll`: parameters -> collection, data. Call the `setCollection` and `setData`
+##Actions
+`insertAll`: 
+* insert all the given datas within a transaction. 
+* If something fails, nothing should be inserted.
+
+`updateAll`: 
+* update all the given datas within a transaction. 
+* If something fails, nothing should be updated. 
+* *Use the idAttribute to update.*
+
+`deleteAll`: 
+* delete all the given datas within a transaction. 
+* If something fails, nothing should be deleted. 
+* If no data is provided, empty the table. *Be careful.* 
+* *Use the idAttribute to delete.*
