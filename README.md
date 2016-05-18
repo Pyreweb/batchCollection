@@ -1,5 +1,5 @@
 # batchCollection
-Alloy CommonJS module to do batch DB Create/Update/Delete
+Titanium CommonJS module to do batch DB Create/Update/Delete on Alloy Collections
 
 Take parts and inspiration from https://gist.github.com/aaronksaunders/5066608 and http://ti-qa-archive.github.io/question/122522/can-titanium-do-a-batch-insert-into-a-database.html
 
@@ -45,7 +45,7 @@ var myGreatCollection = Alloy.createCollection('myGreatCollection'),
     toInsert = [];
  
 magicSyncer.setCollection(myGreatCollection);
-//Filling
+//Editing
 myLotsOfData.forEach(function (myData) {
     //You could do transformations to datas here
     myData.myAttribute = 'wow' + myData.id;
@@ -56,6 +56,7 @@ magicSyncer.setData(toInsert);
 if (myLotsOfData.length > 0) {
     magicSyncer.deleteAll();
 }
+//Filling
 magicSyncer.insertAll();
 ```
 Which takes over 9000 less time. At least.
