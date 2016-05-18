@@ -52,7 +52,7 @@ myLotsOfData.forEach(function (myData) {
     toInsert.push(myData);
 });
 magicSyncer.setData(toInsert);
-//We should erase only if we have datas to insert
+//We should erase only if we have datas to insert or else it would empty the whole DB (by design)
 if (myLotsOfData.length > 0) {
     magicSyncer.deleteAll();
 }
