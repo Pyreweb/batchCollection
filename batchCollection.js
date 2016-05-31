@@ -44,8 +44,10 @@ exports.insertAll = function () {
         db;
 
     for (k in cols) {
-        names.push(k);
-        q.push("?");
+        if (k !== 'alloy_id') {
+            names.push(k);
+            q.push("?");
+        }
     }
     query = query + " (" + names.join(',') + ")";
     query = query + " VALUES (" + q.join(',') + ");";
@@ -82,6 +84,10 @@ exports.deleteAll = function () {
         idAttribute = this.collection.config.adapter.idAttribute,
         query = "DELETE FROM " + tableName,
         db;
+    
+    if (typeof (idAttribute) === 'undefined') {
+        idAttribute = 'alloy_id';
+    }
 
     db = Ti.Database.open(dbName);
     db.execute('BEGIN IMMEDIATE TRANSACTION;');
@@ -118,6 +124,10 @@ exports.updateAll = function () {
         query = "UPDATE " + tableName,
         db;
 
+    if (typeof (idAttribute) === 'undefined') {
+        idAttribute = 'alloy_id';
+    }
+    
     for (k in cols) {
         if (k !== idAttribute) {
             names.push(k);
