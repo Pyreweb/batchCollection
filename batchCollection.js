@@ -91,7 +91,7 @@ exports.deleteAll = function () {
     //this.collection.trigger('sync');
 };
 exports.updateAll = function () {
-    var dbName = this.collection.adapter.db_name,
+    var dbName = this.collection.config.adapter.db_name,
         tableName = this.collection.config.adapter.collection_name,
         idAttribute = this.collection.config.adapter.idAttribute,
         cols = this.collection.config.columns,
