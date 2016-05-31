@@ -1,5 +1,6 @@
 exports.collection = [];
 exports.data = [];
+exports.triggerSync = false;
 
 exports.setCollection = function (collection) {
     this.collection = collection;
@@ -11,10 +12,22 @@ exports.setData = function (data) {
 
     return (this.data.length > 0);
 };
+exports.setTrigger = function (data) {
+    if (this.triggerSync) {
+        this.triggerSync = false;
+    } else {
+        this.triggerSync = true;
+    }
 
-exports.setAll = function (collection, data) {
+    return this.triggerSync;
+};
+
+exports.setAll = function (collection, data, trigger) {
     this.setCollection(collection);
     this.setData(data);
+    if (typeof (trigger) !== 'undefined') {
+        this.triggerSync = trigger;
+    }
 
     return (this.collection.length > 0 && this.data.length > 0);
 };
@@ -57,8 +70,10 @@ exports.insertAll = function () {
 
         db.close();
 
-        //Uncomment to send update event
-        //this.collection.trigger('sync');
+        //Send update event to collection ?
+        if (this.triggerSync) {
+            this.collection.trigger('sync');
+        }
     }
 };
 exports.deleteAll = function () {
@@ -87,8 +102,10 @@ exports.deleteAll = function () {
 
     db.close();
 
-    //Uncomment to send update event
-    //this.collection.trigger('sync');
+    //Send update event to collection ?
+    if (this.triggerSync) {
+        this.collection.trigger('sync');
+    }
 };
 exports.updateAll = function () {
     var dbName = this.collection.config.adapter.db_name,
@@ -130,7 +147,9 @@ exports.updateAll = function () {
 
         db.close();
 
-        //Uncomment to send update event
-        //this.collection.trigger('sync');
+        //Send update event to collection ?
+        if (this.triggerSync) {
+            this.collection.trigger('sync');
+        }
     }
 };
