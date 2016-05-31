@@ -105,10 +105,10 @@ myFakeCollection = {
 `deleteAll`: 
 * delete all the given datas within a transaction. 
 * If something fails, nothing should be deleted. 
-* If no data is provided, *empty* the table. *Be careful.* 
+* If no data is provided, **empty** the table. *Be careful.* 
 * *Use the idAttribute to delete.*
 
 ##Remarks
-If no *idAttribute* is set for the collection, it try to use `alloy_id` on the `updateAll` and `deleteAll` methods. On the `inserAll`method, it ignore datas set on `alloy_id`.
+If no **idAttribute** is set for the collection, it try to use `alloy_id` on the `updateAll` and `deleteAll` methods. On the `inserAll`method, it ignore datas set on `alloy_id`.
 
-If you require the lib multiple times, it keeps the setted vars from last instance. You'll maybe do something about this.
+If you require the lib multiple times, it keeps the setted vars from last instance. I'll maybe do something about this.
