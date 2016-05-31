@@ -6,7 +6,7 @@ Take parts and inspiration from https://gist.github.com/aaronksaunders/5066608 a
 #/!\ Not fully tested 
 * Insert part is ok
 * Delete part seems too
-* *Update part not tested*
+* Update part very lightly tested
 
 #Usage
 Put the batchCollection.js in /app/lib folder.
@@ -89,7 +89,9 @@ myFakeCollection = {
 ```
 `setData`: set the datas **array** which we'll do bulk thing to.
 
-`setAll`: parameters -> collection, data. Call the `setCollection` and `setData`
+`setTrigger`: toggle the triggerSync var which decide if we send events.
+
+`setAll`: parameters -> collection, data, trigger. Call the `setCollection` and `setData`. Trigger params (**boolean**) optionnal
 ##Actions
 `insertAll`: 
 * insert all the given datas within a transaction. 
@@ -103,5 +105,6 @@ myFakeCollection = {
 `deleteAll`: 
 * delete all the given datas within a transaction. 
 * If something fails, nothing should be deleted. 
-* If no data is provided, empty the table. *Be careful.* 
+* If no data is provided, *empty* the table. *Be careful.* 
 * *Use the idAttribute to delete.*
+
