@@ -1,9 +1,18 @@
 {
-    "description": "batchCollection",
-    "directories": {
-        "lib": "."
-    },
-    "main": "com.pyreweb.batchCollection",
-    "name": "com.pyreweb.batchCollection",
-    "version": "1.1.0"
+  "name": "batchCollection",
+  "version": "1.1.0",
+  "description": "Titanium Alloy collection batch operationK",
+  "guid": "a58af23f-e427-42c7-92ce-4d7f5f5e3ff1",
+  "keywords": [
+    "Titanium",
+    "Alloy",
+    "sqlite"
+  ],
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pyreweb/batchCollection"
+  },
+  "bugs": "https://github.com/Pyreweb/batchCollection/issues",
+  "main": "batchCollection.js"
 }
