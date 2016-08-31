@@ -91,15 +91,17 @@ myFakeCollection = {
 
 `setTrigger`: toggle the triggerSync var which decide if we send events.
 
+`setDefaults`: toggle the autoDefaults var which decide if we try to use default field data if field data is null.
+
 `setAll`: parameters -> collection, data, trigger. Call the `setCollection` and `setData`. Trigger params (**boolean**) optionnal
 ##Actions
 `insertAll`: 
 * insert all the given datas within a transaction. 
-* If something fails, nothing should be inserted.
+* If something fails, nothing *should be* inserted (db rollback).
 
 `updateAll`: 
 * update all the given datas within a transaction. 
-* If something fails, nothing should be updated. 
+* If something fails, nothing *should be* updated (db rollback). 
 * *Use the idAttribute to update.*
 
 `deleteAll`: 
@@ -111,4 +113,4 @@ myFakeCollection = {
 ##Remarks
 If no **idAttribute** is set for the collection, it try to use `alloy_id` on the `updateAll` and `deleteAll` methods. On the `inserAll`method, it ignore datas set on `alloy_id`.
 
-If you require the lib multiple times, it keeps the setted vars from last instance. I'll maybe do something about this.
+If you require the lib multiple times, it keeps the setted vars from last instance. I'll maybe should do something about this.
