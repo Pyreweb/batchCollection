@@ -1,6 +1,7 @@
 exports.collection = [];
 exports.data = [];
 exports.triggerSync = false;
+exports.autoDefaults = true;
 
 exports.setCollection = function (collection) {
     this.collection = collection;
@@ -21,6 +22,15 @@ exports.setTrigger = function (data) {
 
     return this.triggerSync;
 };
+exports.setDefaults = function () {
+    if (this.autoDefaults) {
+        this.autoDefaults = false;
+    } else {
+        this.autoDefaults = true;
+    }
+
+    return (this.autoDefaults);
+};
 
 exports.setAll = function (collection, data, trigger) {
     this.setCollection(collection);
@@ -37,12 +47,18 @@ exports.insertAll = function () {
     var dbName = this.collection.config.adapter.db_name,
         tableName = this.collection.config.adapter.collection_name,
         cols = this.collection.config.columns,
+        defaults = {},
         k,
         names = [],
         q = [],
         query = "INSERT INTO " + tableName,
         db;
-
+    
+    if (this.autoDefaults) {
+        if (typeof (this.collection.config.defaults) !== 'undefined') {
+            defaults = this.collection.config.defaults;
+        }
+    }
     for (k in cols) {
         if (k !== 'alloy_id') {
             names.push(k);
@@ -59,6 +75,11 @@ exports.insertAll = function () {
             this.data.forEach(function (dat) {
                 var rawData = [];
                 names.forEach(function (key) {
+                    if (dat[key] === null && this.autoDefaults) {
+                        if (typeof (defaults[key]) !== 'undefined') {
+                            dat[key] = defaults[key];
+                        }
+                    }
                     rawData.push(dat[key]);
                 });
                 db.execute(query, rawData);
@@ -118,6 +139,7 @@ exports.updateAll = function () {
         tableName = this.collection.config.adapter.collection_name,
         idAttribute = this.collection.config.adapter.idAttribute,
         cols = this.collection.config.columns,
+        defaults = {},
         k,
         names = [],
         q = [],
@@ -128,6 +150,11 @@ exports.updateAll = function () {
         idAttribute = 'alloy_id';
     }
     
+    if (this.autoDefaults) {
+        if (typeof (this.collection.config.defaults) !== 'undefined') {
+            defaults = this.collection.config.defaults;
+        }
+    }
     for (k in cols) {
         if (k !== idAttribute) {
             names.push(k);
@@ -144,6 +171,11 @@ exports.updateAll = function () {
             this.data.forEach(function (dat) {
                 var rawData = [];
                 names.forEach(function (key) {
+                    if (dat[key] === null && this.autoDefaults) {
+                        if (typeof (defaults[key]) !== 'undefined') {
+                            dat[key] = defaults[key];
+                        }
+                    }
                     rawData.push(dat[key]);
                 });
                 rawData.push(dat[idAttribute]);
