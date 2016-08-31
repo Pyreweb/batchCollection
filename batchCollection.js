@@ -161,8 +161,8 @@ exports.updateAll = function () {
         }
     }
     query = query + " SET " + names.join(' = ?,');
-    query = query.substr(0, (query.length - 1));
-    query = query + " WHERE " + idAttribute + " = ?";
+    query = query + " = ? ";
+    query = query + "WHERE " + idAttribute + " = ?";
     if (this.data.length > 0) {
         db = Ti.Database.open(dbName);
         db.execute('BEGIN IMMEDIATE TRANSACTION;');
