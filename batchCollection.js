@@ -75,7 +75,7 @@ exports.insertAll = function () {
             this.data.forEach(function (dat) {
                 var rawData = [];
                 names.forEach(function (key) {
-                    if (dat[key] === null && this.autoDefaults) {
+                    if (dat[key] === null) {
                         if (typeof (defaults[key]) !== 'undefined') {
                             dat[key] = defaults[key];
                         }
@@ -171,7 +171,7 @@ exports.updateAll = function () {
             this.data.forEach(function (dat) {
                 var rawData = [];
                 names.forEach(function (key) {
-                    if (dat[key] === null && this.autoDefaults) {
+                    if (dat[key] === null) {
                         if (typeof (defaults[key]) !== 'undefined') {
                             dat[key] = defaults[key];
                         }
