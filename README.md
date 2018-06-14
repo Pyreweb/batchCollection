@@ -3,19 +3,19 @@ Titanium CommonJS module to do batch DB Create/Update/Delete on Alloy Collection
 
 Take parts and inspiration from https://gist.github.com/aaronksaunders/5066608 and http://ti-qa-archive.github.io/question/122522/can-titanium-do-a-batch-insert-into-a-database.html
 
-#/!\ Not fully tested 
+# /!\ Not fully tested 
 * Insert part is ok
 * Delete part seems too
 * Update part very lightly tested
 
-#Usage
+# Usage
 Put the batchCollection.js in /app/lib folder.
 
 Require it like this `var batchCollection = require('batchCollection');`
 
 **Works only on collection with sql adapter.**
 
-#Example
+# Example
 Before, you could do :
 ```javascript
 var myGreatCollection = Alloy.createCollection('myGreatCollection'),
@@ -67,8 +67,8 @@ magicSyncer.insertAll();
 ```
 Which takes over 9000 less time. At least.
 
-#Methods
-##Setters
+# Methods
+## Setters
 `setCollection`: set the collection. Or an object who contains a collection-like structure
 ```javascript
 //If you do this, you should have everything already setted before (db and table install)
@@ -94,7 +94,7 @@ myFakeCollection = {
 `setDefaults`: toggle the autoDefaults var which decide if we try to use default field data if field data is null.
 
 `setAll`: parameters -> collection, data, trigger. Call the `setCollection` and `setData`. Trigger params (**boolean**) optionnal
-##Actions
+## Actions
 `insertAll`: 
 * insert all the given datas within a transaction. 
 * If something fails, nothing *should be* inserted (db rollback).
@@ -110,7 +110,7 @@ myFakeCollection = {
 * If no data is provided, **empty** the table. *Be careful.* 
 * *Use the idAttribute to delete.*
 
-##Remarks
+## Remarks
 If no **idAttribute** is set for the collection, it try to use `alloy_id` on the `updateAll` and `deleteAll` methods. On the `inserAll`method, it ignore datas set on `alloy_id`.
 
 If you require the lib multiple times, it keeps the setted vars from last instance. I'll maybe should do something about this.
